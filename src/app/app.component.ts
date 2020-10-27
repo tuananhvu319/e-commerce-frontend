@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {NavigationEnd, NavigationStart, Router} from "@angular/router";
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: 'app-root',

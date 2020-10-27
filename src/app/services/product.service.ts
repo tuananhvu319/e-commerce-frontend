@@ -15,7 +15,7 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   /* This is used to fettch all products from the backend server */
-  getAllProducts(numberOfResults = 10) : Observable<ServerResponse> {
+  getAllProducts(numberOfResults = 100) : Observable<ServerResponse> {
     return this.http.get<ServerResponse>(this.SERVER_URL + '/products', {
       params: {
         limit: numberOfResults.toString()

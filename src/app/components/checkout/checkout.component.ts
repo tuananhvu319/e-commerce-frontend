@@ -4,6 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { CartModelServer } from 'src/app/models/cart.model';
 import { CartService } from 'src/app/services/cart.service';
 import { OrderService } from 'src/app/services/order.service';
+import { FormBuilder, NgForm, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-checkout',
@@ -14,6 +15,8 @@ export class CheckoutComponent implements OnInit {
 
   cartTotal: number;
   cartData: CartModelServer;
+  showSpinner: Boolean;
+  checkoutForm: any;
 
   constructor(private cartService: CartService,
     private orderService: OrderService,
@@ -25,4 +28,9 @@ export class CheckoutComponent implements OnInit {
     this.cartService.cartTotal$.subscribe(total => this.cartTotal = total);
   }
 
+  /*show().then */
+  onCheckout() {
+    this.spinner.show();
+    this.cartService.CheckoutFromCart(2);
+  }
 }

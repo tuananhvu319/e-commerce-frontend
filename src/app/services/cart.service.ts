@@ -65,6 +65,7 @@ export class CartService {
           if (this.cartDataServer.data[0].numInCart === 0) {
             this.cartDataServer.data[0].numInCart = p.incart;
             this.cartDataServer.data[0].product = actualProdInfo;
+            this.CalculateTotal();
             this.cartDataClient.total = this.cartDataServer.total;
             localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
           } else {
@@ -72,6 +73,7 @@ export class CartService {
               numInCart: p.incart,
               product: actualProdInfo
             });
+            this.CalculateTotal
             this.cartDataClient.total = this.cartDataServer.total;
             localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
           }
@@ -81,6 +83,8 @@ export class CartService {
 
     }
   }
+
+  
 
   AddProductToCart(id: number, quantity?: number) {
     this.productService.getSingleProduct(id).subscribe(prod => {
@@ -95,7 +99,7 @@ export class CartService {
         this.cartDataClient.total = this.cartDataServer.total;
         localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
         this.cartData$.next({ ...this.cartDataServer });
-        this.toast.success('${prod.name} added to the cart', 'Product Added', {
+        this.toast.success(`${prod.name} added to the cart`, 'Course Added', {
           timeOut: 1500,
           progressBar: true,
           progressAnimation: 'increasing',
@@ -114,10 +118,10 @@ export class CartService {
             this.cartDataServer.data[index].numInCart < prod.quantity ? this.cartDataServer.data[index].numInCart++ : prod.quantity;
           }
           this.cartDataClient.prodData[index].incart = this.cartDataServer.data[index].numInCart;
-          this.CalculateTotal();
+          /*this.CalculateTotal();
           this.cartDataClient.total = this.cartDataServer.total;
-          localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
-          this.toast.info(`${prod.name} quantity updated in the cart`, 'Product Updated', {
+          localStorage.setItem('cart', JSON.stringify(this.cartDataClient));*/
+          this.toast.info(`${prod.name} quantity updated in the cart`, 'Course Updated', {
             timeOut: 1500,
             progressBar: true,
             progressAnimation: 'increasing',
@@ -141,7 +145,7 @@ export class CartService {
             incart: 1,
             id: prod.id
           });
-          this.toast.success(`${prod.name} added to the cart`, 'Product Added', {
+          this.toast.success(`${prod.name} added to the cart`, 'Course Added', {
             timeOut: 1500,
             progressBar: true,
             progressAnimation: 'increasing',
@@ -162,30 +166,30 @@ export class CartService {
     if (increase) {
       data.numInCart < data.product.quantity ? data.numInCart++ : data.product.quantity;
       this.cartDataClient.prodData[index].incart = data.numInCart;
-      // Todo calculate total amount
+      this.CalculateTotal();
       this.cartDataClient.total = this.cartDataServer.total;
-      localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
       this.cartData$.next({ ...this.cartDataServer });
+      localStorage.setItem('cart', JSON.stringify(this.cartDataClient));    
     } else {
       data.numInCart--;
       if (data.numInCart < 1) {
-        // Todo delete the product from cart
+        this.DeleteProductFromCart(index);
         this.cartData$.next({ ...this.cartDataServer });
       } else {
         this.cartData$.next({ ...this.cartDataServer });
         this.cartDataClient.prodData[index].incart = data.numInCart;
-        // Todo calculate total amount
+        this.CalculateTotal();
         this.cartDataClient.total = this.cartDataServer.total;
         localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
       }
     }
   }
 
-  DeleteProductFromCart(index, number) {
+  DeleteProductFromCart(index) {
     if (window.confirm('Are you sure that you want to remove the item?')) {
       this.cartDataServer.data.splice(index, 1);
       this.cartDataClient.prodData.splice(index, 1);
-      // Todo calculate total amount
+      this.CalculateTotal();
       this.cartDataClient.total = this.cartDataServer.total;
 
       if (this.cartDataClient.total == 0) {
@@ -221,10 +225,11 @@ export class CartService {
   }
 
   CheckoutFromCart(userId: number) {
-    this.http.post('${this.serverURL}/orders/payment', null).subscribe((res: {success: boolean}) => {
+    this.http.post(`${this.serverURL}/orders/payment`, null).subscribe((res: {success: boolean}) => {
       if (res.success) {
         this.resetServerData();
-        this.http.post('${this.serverURL}/orders/payment', {userId: userId, products: this.cartDataClient.prodData}).subscribe((data: OrderResponse) => {
+
+        this.http.post(`${this.serverURL}/orders/new`, {userId: userId, products: this.cartDataClient.prodData}).subscribe((data: OrderResponse) => {
           this.orderService.getSingleOrder(data.order_id).then(prods => {
             if(data.success) {
               const navigationExtras: NavigationExtras = {
@@ -236,7 +241,7 @@ export class CartService {
                 }
               };
 
-              this.spinner.hide();
+              this.spinner.hide()
               this.router.navigate(['/thankyou'], navigationExtras).then(p => {
                 this.cartDataClient = {total: 0, prodData: [{incart: 0, id: 0}]};
                 this.cartTotal$.next(0);
