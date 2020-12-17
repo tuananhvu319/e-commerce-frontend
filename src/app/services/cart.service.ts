@@ -99,7 +99,7 @@ export class CartService {
         this.cartDataClient.total = this.cartDataServer.total;
         localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
         this.cartData$.next({ ...this.cartDataServer });
-        this.toast.success(`${prod.name} added to the cart`, 'Course Added', {
+        this.toast.success(`${prod.name} added to the cart`, 'Product(s) Added', {
           timeOut: 1500,
           progressBar: true,
           progressAnimation: 'increasing',
@@ -145,7 +145,7 @@ export class CartService {
             incart: 1,
             id: prod.id
           });
-          this.toast.success(`${prod.name} added to the cart`, 'Course Added', {
+          this.toast.success(`${prod.name} added to the cart`, 'Product(s) Added', {
             timeOut: 1500,
             progressBar: true,
             progressAnimation: 'increasing',
