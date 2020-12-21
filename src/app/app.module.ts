@@ -18,6 +18,8 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { FormsModule } from '@angular/forms';
 import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
+import { RegisterComponent } from './components/register/register.component';
+import { CategoryComponent } from './components/category/category.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider, Facebo
     ProductComponent,
     ThankyouComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    RegisterComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
