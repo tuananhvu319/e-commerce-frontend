@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
           if (user instanceof SocialUser) {
             return {
               ...user,
-              email: 'test@test.com',
+              email: user.email
 
             };
           } else {
@@ -38,10 +38,10 @@ export class ProfileComponent implements OnInit {
     this.authService.authState.pipe(
       map((user: SocialUser | ResponseModel) => {
         if (user instanceof SocialUser) {
+          console.log(user.email);
           return {
             ...user,
-            email: 'test@test.com',
-
+            email: user.email
           };
         } else {
           return user;
