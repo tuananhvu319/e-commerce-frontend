@@ -55,18 +55,10 @@
             <div aria-labelledby="home-tab" class="tab-pane fade show active" id="home" role="tabpanel">
               <div class="row">
                 <div class="col-md-6">
-                  <label>User Id</label>
-                </div>
-                <div class="col-md-6">
-                  <p>{{myUser.fname}}</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
                   <label>Name</label>
                 </div>
                 <div class="col-md-6">
-                  <p>{{myUser.name || myUser.username}}</p>
+                  <p>{{myUser.name || myUser.username || myUser.email}}</p>
                 </div>
               </div>
               <div class="row">
