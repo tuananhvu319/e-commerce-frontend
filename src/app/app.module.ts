@@ -20,6 +20,7 @@ import { FormsModule } from '@angular/forms';
 import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
 import { RegisterComponent } from './components/register/register.component';
 import { CategoryComponent } from './components/category/category.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { CategoryComponent } from './components/category/category.component';
     LoginComponent,
     ProfileComponent,
     RegisterComponent,
-    CategoryComponent
+    CategoryComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,

@@ -84,7 +84,8 @@ export class ProductComponent implements OnInit, AfterViewInit {
   }
 
   AddToCart(id: number) {
-    this.cartService.AddProductToCart(id, this.quantityInput.nativeElemnt.value);
+    this.cartService.AddProductToCart(id);
+    //this.cartService.AddProductToCart(id, this.quantityInput.nativeElemnt.value);
     
   }
 
