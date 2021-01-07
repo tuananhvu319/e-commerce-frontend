@@ -21,10 +21,12 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  // get product from backend
   selectProduct(id: number) {
     this.router.navigate(['/product', id]).then();
   }
 
+  //add products into cart
   AddToCart(id: number) {
     this.cartService.AddProductToCart(id);
   }

@@ -83,12 +83,14 @@ export class ProductComponent implements OnInit, AfterViewInit {
     }
   }
 
+  // Add to cart by number
   AddToCart(id: number) {
     this.cartService.AddProductToCart(id);
     //this.cartService.AddProductToCart(id, this.quantityInput.nativeElemnt.value);
     
   }
 
+  // Increase the number of product
   Increase() {
     let value = parseInt(this.quantityInput.nativeElemnt.value);
     if (this.product.quantity >= 1) {
@@ -103,6 +105,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
     this.quantityInput.nativeElemnt.value = value.toString();
   }
 
+  // Decrease the number of product
   Decrease() {
     let value = parseInt(this.quantityInput.nativeElemnt.value);
     if (this.product.quantity > 0) {

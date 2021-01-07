@@ -31,14 +31,17 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  //Sign in with Google, using provided id from user.service.ts
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
+  //Sign in with Facebook, using provided id from user.service.ts
   signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
 
+  //Sign in locally, using login from user.service.ts
   login(form: NgForm) {
     const email = this.email;
     const password = this.password;
