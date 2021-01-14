@@ -413,7 +413,7 @@ textarea.input {
 #top-header {
   padding-top: 10px;
   padding-bottom: 10px;
-  background-color: #8d99ae;
+  background-color:#999999;
 }
 
 .header-links li {
@@ -446,7 +446,7 @@ textarea.input {
 #header {
   padding-top: 15px;
   padding-bottom: 15px;
-  background-color: #8d99ae;
+  background-color: #999999;
 }
 
 .header-logo {
@@ -2002,7 +2002,7 @@ textarea.input {
 ===========================================================*/
 
 #footer {
-  background: #8d99ae;
+  background: #999999;
   color: #B9BABC;
 }
 
