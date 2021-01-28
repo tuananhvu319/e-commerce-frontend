@@ -76,13 +76,13 @@
                         <div class="card my-2">
                             <img [src]="p.image" alt="{{p.name}}" width="200px" class="card-img-top"
                                 style="cursor: pointer;" (click)="selectProduct(p.id)">
-                            <div class="card-header">
+                            <div class="card-header" style="cursor: pointer;" (click)="selectProduct(p.id)">
                                 <div class="card-title">
                                     <p>{{p.name | titlecase}}</p>
                                 </div>
                             </div>
 
-                            <div class="card-body">
+                            <div class="card-body" style="cursor: pointer;" (click)="selectProduct(p.id)">
                                 <h6>{{p.description.substr(0,25)}} ...</h6>
                                 <p class="lead">{{p.price | currency:'GBP'}}</p>
                             </div>
